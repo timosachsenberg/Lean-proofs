@@ -1,0 +1,80 @@
+{
+  "lean": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "theorems": {
+    "LeanProofs.persistent_value": {
+      "passed": true,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "LeanProofs.boundsAll_of_cardinal_lt_cof": {
+      "passed": true,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "LeanProofs.compact_intersection_hits": {
+      "passed": true,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "LeanProofs.compact_intersection_hits_of_lt_cof": {
+      "passed": true,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "LeanProofs.bad_iInter_of_lt_cof": {
+      "passed": true,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "LeanProofs.nat_tails_counterexample": {
+      "passed": true,
+      "axioms": []
+    },
+    "LeanProofs.nat_tails_have_no_common_lower_member": {
+      "passed": true,
+      "axioms": []
+    },
+    "Search.persistent_value": {
+      "passed": true,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "Search.persistence_implies_bounds": {
+      "passed": true,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "LeanProofs.boundsAll_iff_persistence": {
+      "passed": true,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  },
+  "passed": true
+}

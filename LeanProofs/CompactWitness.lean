@@ -48,7 +48,7 @@ theorem boundsAll_of_cardinal_lt_cof {A S : Type u} [LinearOrder A]
 /-- A decreasing family of compact sets meets one of a boundedly indexed
 family of closed sets at every stage, hence its intersection does too.
 This packages the compact-fibre argument without assuming the conclusion. -/
-theorem compact_intersection_hits {A : Type u} [LinearOrder A] [Nonempty A]
+theorem compact_intersection_hits {A : Type u} [Preorder A] [IsDirectedOrder A] [Nonempty A]
     {X : Type v} [TopologicalSpace X] [T2Space X] {S : Type w}
     (H : A → Set X) (F : S → Set X)
     (hH : Antitone H) (hc : ∀ a, IsCompact (H a))
@@ -78,5 +78,35 @@ theorem compact_intersection_hits_of_lt_cof
     (hhit : ∀ a, ∃ s, (H a ∩ F s).Nonempty) :
     ∃ s, ((⋂ a, H a) ∩ F s).Nonempty :=
   compact_intersection_hits H F hH hc hF (boundsAll_of_cardinal_lt_cof hcard) hhit
+
+/-- No single coordinate separates `H` from `R`. This definition alone does
+not assert saturation of `R`, disjointness, or an inverse-system structure. -/
+def Bad {I X : Type u} {Y : I → Type u}
+    (p : (i : I) → X → Y i) (R H : Set X) : Prop :=
+  ∀ i, ∃ x ∈ H, p i x ∈ p i '' R
+
+/-- Coordinate form of the high-cofinality lemma. It applies in particular to
+inverse systems, without requiring their bonding maps for this limit rule. -/
+theorem bad_iInter_of_lt_cof
+    {A I X : Type u} [LinearOrder A] [Nonempty A]
+    [TopologicalSpace X] [T2Space X]
+    {Y : I → Type u} [∀ i, TopologicalSpace (Y i)] [∀ i, T1Space (Y i)]
+    (p : (i : I) → X → Y i) (hp : ∀ i, Continuous (p i))
+    (R : Set X) (H : A → Set X)
+    (hH : Antitone H) (hc : ∀ a, IsCompact (H a))
+    (hcard : ∀ i, Cardinal.mk (p i '' R) < Order.cof A)
+    (hbad : ∀ a, Bad p R (H a)) : Bad p R (⋂ a, H a) := by
+  intro i
+  let F : (p i '' R) → Set X := fun z => p i ⁻¹' {z.val}
+  have hF : ∀ z, IsClosed (F z) :=
+    fun z => isClosed_singleton.preimage (hp i)
+  have hhit : ∀ a, ∃ z, (H a ∩ F z).Nonempty := by
+    intro a
+    obtain ⟨x, hx, hz⟩ := hbad a i
+    exact ⟨⟨p i x, hz⟩, x, hx, rfl⟩
+  obtain ⟨z, x, hx, hz⟩ :=
+    compact_intersection_hits_of_lt_cof H F hH hc hF (hcard i) hhit
+  have heq : p i x = z.val := hz
+  exact ⟨x, hx, heq ▸ z.property⟩
 
 end LeanProofs

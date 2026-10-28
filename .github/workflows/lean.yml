@@ -1,0 +1,20 @@
+name: Lean proof checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  proofs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          test: "false"
+      - name: Check foundational axiom dependencies
+        run: python3 scripts/audit_proofs.py

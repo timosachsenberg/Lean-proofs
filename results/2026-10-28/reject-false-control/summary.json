@@ -1,0 +1,14 @@
+{
+  "task": "reject_false_control",
+  "theorem": "Search.false_control",
+  "task_sha256": "f871f720d4554d8bccb3171f1f05cf4ea0bf074012800e3c3f0eca7c37022993",
+  "status": "budget_exhausted_or_no_frontier",
+  "attempts": 2,
+  "distinct_frontiers": 1,
+  "elapsed_seconds": 5.373,
+  "policy": "explicit model-supplied tactic catalog; no weight updates",
+  "max_attempts": 3,
+  "max_depth": 8,
+  "timeout_seconds": 30,
+  "proof": null
+}

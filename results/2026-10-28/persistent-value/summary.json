@@ -1,0 +1,14 @@
+{
+  "task": "persistent_value",
+  "theorem": "Search.persistent_value",
+  "task_sha256": "594704f300680c3511ede4efa2d472075ceb497769e5b6db5ccaa0d144ec53db",
+  "status": "proved",
+  "attempts": 48,
+  "distinct_frontiers": 24,
+  "elapsed_seconds": 152.822,
+  "policy": "explicit model-supplied tactic catalog; no weight updates",
+  "max_attempts": 50,
+  "max_depth": 8,
+  "timeout_seconds": 30,
+  "proof": "Proof.lean"
+}

@@ -1,0 +1,70 @@
+{
+  "name": "persistence_implies_bounds",
+  "theorem": "Search.persistence_implies_bounds",
+  "preamble": "module\n\npublic import Mathlib.Tactic\n\npublic section\nuniverse u v",
+  "statement": "theorem Search.persistence_implies_bounds {A : Type u} [Preorder A] {S : Type v}\n    (hpersist : ∀ P : A → S → Prop,\n      (∀ ⦃a b⦄, a ≤ b → ∀ s, P b s → P a s) →\n      (∀ a, ∃ s, P a s) → ∃ s, ∀ a, P a s) :\n    ∀ f : S → A, ∃ a, ∀ s, f s ≤ a",
+  "initial": [
+    "classical"
+  ],
+  "tactics": [
+    {
+      "text": "intro f",
+      "cost": 1,
+      "requires": [
+        "⊢ ∀ (f :"
+      ]
+    },
+    {
+      "text": "by_contra h",
+      "cost": 1,
+      "requires": [
+        "\nf :"
+      ],
+      "excludes": [
+        "⊢ False"
+      ]
+    },
+    {
+      "text": "push Not at h",
+      "cost": 1,
+      "requires": [
+        "h : ¬"
+      ]
+    },
+    {
+      "text": "have hanti : ∀ ⦃a b : A⦄, a ≤ b → ∀ s : S, (¬ f s ≤ b) → ¬ f s ≤ a := by\n  intro a b hab s hs hsa\n  exact hs (le_trans hsa hab)",
+      "cost": 1,
+      "requires": [
+        "h : ∀"
+      ],
+      "excludes": [
+        "\nhanti :"
+      ]
+    },
+    {
+      "text": "obtain ⟨s, hs⟩ := hpersist (fun a s => ¬ f s ≤ a) hanti h",
+      "cost": 1,
+      "requires": [
+        "\nhanti :"
+      ],
+      "excludes": [
+        "\nhs :"
+      ]
+    },
+    {
+      "text": "exact hs (f s) le_rfl",
+      "cost": 1,
+      "requires": [
+        "\nhs :"
+      ]
+    },
+    {
+      "text": "assumption",
+      "cost": 1
+    },
+    {
+      "text": "aesop (config := { maxRuleApplications := 50 })",
+      "cost": 3
+    }
+  ]
+}

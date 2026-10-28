@@ -1,0 +1,14 @@
+{
+  "task": "persistence_implies_bounds",
+  "theorem": "Search.persistence_implies_bounds",
+  "task_sha256": "12943f61dd789c785554c0768eccae0590f563c4d21df032defe72a7e66c7b06",
+  "status": "proved",
+  "attempts": 25,
+  "distinct_frontiers": 12,
+  "elapsed_seconds": 72.658,
+  "policy": "explicit model-supplied tactic catalog; no weight updates",
+  "max_attempts": 50,
+  "max_depth": 8,
+  "timeout_seconds": 30,
+  "proof": "Proof.lean"
+}

@@ -1,0 +1,14 @@
+{
+  "task": "small_limit_coordinate_system",
+  "theorem": "Search.small_limit_coordinate_system",
+  "task_sha256": "c38842320b8c68612f8bc85ea26d02d2a5e0edf8332efc599e025837fe23d52b",
+  "status": "budget_exhausted_or_no_frontier",
+  "attempts": 17,
+  "distinct_frontiers": 4,
+  "elapsed_seconds": 53.526,
+  "policy": "explicit model-supplied tactic catalog; no weight updates",
+  "max_attempts": 24,
+  "max_depth": 4,
+  "timeout_seconds": 30,
+  "proof": null
+}

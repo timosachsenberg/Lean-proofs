@@ -1,0 +1,31 @@
+Unresolved goal on the high-cofinality-theorem branch.
+This is not a claim that every possible proof needs this bound.
+
+unsolved goals
+κ : Cardinal.{u}
+hκ : κ.IsInaccessible
+I X A : Type u
+inst✝⁹ : Preorder I
+inst✝⁸ : Nonempty I
+inst✝⁷ : LinearOrder A
+inst✝⁶ : Nonempty A
+inst✝⁵ : NoMaxOrder A
+inst✝⁴ : TopologicalSpace X
+inst✝³ : T2Space X
+inst✝² : CompactSpace X
+Y : I → Type u
+inst✝¹ : (i : I) → TopologicalSpace (Y i)
+inst✝ : ∀ (i : I), T2Space (Y i)
+p : (i : I) → X → Y i
+hsys : CompatibleCoordinates κ p
+R : Set X
+hsat : CoordinateSaturated p R
+hsmall : ∀ (i : I), Cardinal.mk ↑(p i '' R) < κ
+hA : Cardinal.mk A < κ
+H : A → Set X
+hH : Antitone H
+hc : ∀ (a : A), IsCompact (H a)
+hdisj : ∀ (a : A), Disjoint (H a) R
+hbad : ∀ (a : A), Bad p R (H a)
+i : I
+⊢ Cardinal.mk ↑(p i '' R) < Order.cof A

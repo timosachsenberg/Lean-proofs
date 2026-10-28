@@ -1,0 +1,70 @@
+{
+  "name": "persistent_value",
+  "theorem": "Search.persistent_value",
+  "preamble": "module\n\npublic import Mathlib.Tactic\n\npublic section\nuniverse u v",
+  "statement": "theorem Search.persistent_value {A : Type u} [Preorder A] {S : Type v}\n    (P : A → S → Prop)\n    (hanti : ∀ ⦃a b⦄, a ≤ b → ∀ s, P b s → P a s)\n    (hbound : ∀ f : S → A, ∃ a, ∀ s, f s ≤ a)\n    (hne : ∀ a, ∃ s, P a s) : ∃ s, ∀ a, P a s",
+  "initial": [
+    "classical"
+  ],
+  "tactics": [
+    {
+      "text": "assumption",
+      "cost": 1
+    },
+    {
+      "text": "aesop (config := { maxRuleApplications := 50 })",
+      "cost": 1.5
+    },
+    {
+      "text": "by_contra h",
+      "cost": 1,
+      "excludes": [
+        "h :"
+      ]
+    },
+    {
+      "text": "push Not at h",
+      "cost": 1,
+      "requires": [
+        "h : ¬"
+      ]
+    },
+    {
+      "text": "choose f hf using h",
+      "cost": 1,
+      "requires": [
+        "h : ∀"
+      ],
+      "excludes": [
+        "hf :"
+      ]
+    },
+    {
+      "text": "obtain ⟨b, hb⟩ := hbound f",
+      "cost": 1,
+      "requires": [
+        "hf :"
+      ],
+      "excludes": [
+        "hb :"
+      ]
+    },
+    {
+      "text": "obtain ⟨s, hs⟩ := hne b",
+      "cost": 1,
+      "requires": [
+        "hb :"
+      ],
+      "excludes": [
+        "hs :"
+      ]
+    },
+    {
+      "text": "exact hf s (hanti (hb s) s hs)",
+      "cost": 1,
+      "requires": [
+        "hs :"
+      ]
+    }
+  ]
+}

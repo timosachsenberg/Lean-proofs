@@ -1,0 +1,13 @@
+{
+  "name": "reject_false_control",
+  "theorem": "Search.false_control",
+  "preamble": "module\npublic import Mathlib.Tactic\npublic section",
+  "statement": "theorem Search.false_control : False",
+  "initial": [],
+  "tactics": [
+    {
+      "text": "exact True.intro",
+      "cost": 1
+    }
+  ]
+}

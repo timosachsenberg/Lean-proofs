@@ -1,0 +1,44 @@
+{
+  "name": "small_limit_coordinate_system",
+  "theorem": "Search.small_limit_coordinate_system",
+  "preamble": "module\n\npublic import LeanProofs.CoordinateSystem\npublic import Mathlib.Tactic\n\npublic section\nuniverse u\nopen Set LeanProofs",
+  "statement": "theorem Search.small_limit_coordinate_system\n    {κ : Cardinal.{u}} (hκ : Cardinal.IsInaccessible κ)\n    {I X A : Type u} [Preorder I] [Nonempty I]\n    [LinearOrder A] [Nonempty A] [NoMaxOrder A]\n    [TopologicalSpace X] [T2Space X] [CompactSpace X]\n    {Y : I → Type u} [∀ i, TopologicalSpace (Y i)] [∀ i, T2Space (Y i)]\n    (p : (i : I) → X → Y i) (hsys : CompatibleCoordinates κ p)\n    (R : Set X) (hsat : CoordinateSaturated p R)\n    (hsmall : ∀ i, Cardinal.mk (p i '' R) < κ)\n    (hA : Cardinal.mk A < κ) (H : A → Set X)\n    (hH : Antitone H) (hc : ∀ a, IsCompact (H a))\n    (hdisj : ∀ a, Disjoint (H a) R) (hbad : ∀ a, Bad p R (H a)) :\n    Bad p R (⋂ a, H a)",
+  "initial": [
+    "classical"
+  ],
+  "tactics": [
+    {
+      "text": "exact bad_iInter_of_lt_cof p hsys.continuous R H hH hc (fun i => lt_of_lt_of_le (hsmall i) (Order.cof_le_cardinalMk A)) hbad",
+      "cost": 1
+    },
+    {
+      "text": "apply bad_iInter_of_lt_cof p hsys.continuous R H hH hc ?_ hbad",
+      "cost": 1,
+      "requires": [
+        "⊢ Bad"
+      ]
+    },
+    {
+      "text": "intro i",
+      "cost": 1,
+      "requires": [
+        "⊢ ∀"
+      ]
+    },
+    {
+      "text": "exact hsmall i",
+      "cost": 1,
+      "requires": [
+        "\ni :"
+      ]
+    },
+    {
+      "text": "aesop (config := { maxRuleApplications := 50 })",
+      "cost": 2
+    },
+    {
+      "text": "assumption",
+      "cost": 1
+    }
+  ]
+}
